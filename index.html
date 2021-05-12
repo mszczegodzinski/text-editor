@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<title>Document</title>
+		<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" />
+		<link rel="preconnect" href="https://fonts.gstatic.com" />
+		<link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500&display=swap" rel="stylesheet" />
+		<link rel="stylesheet" href="style.css" />
+		<script src="main.js" defer></script>
+		<!-- < src="./dist/bundle.js" defer></> -->
+	</head>
+	<body>
+		<div class="wrapper">
+			<h2>Simple Text Editor</h2>
+			<div class="toolbar">
+				<a href="javascript:void(0)" class="boldBtn">
+					<i class="fas fa-bold"></i>
+				</a>
+				<a href="javascript:void(0)" class="italicBtn">
+					<i class="fas fa-italic"></i>
+				</a>
+				<a href="javascript:void(0)" class="bulletBtn">
+					<i class="fas fa-list"></i>
+				</a>
+			</div>
+			<div class="textArea" contenteditable="true"></div>
+			<div class="bottomToolbar">
+				<button class="saveBtn">Read from file</button>
+				<button class="saveBtn">Save to file</button>
+			</div>
+		</div>
+	</body>
+	<footer class="footer">Created by Marek Szczegodziński 2021</footer>
+</html>

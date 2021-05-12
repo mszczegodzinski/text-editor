@@ -1,0 +1,27 @@
+{
+	"name": "text-editor",
+	"version": "1.0.0",
+	"description": "simple-text-editor",
+	"main": "main.js",
+	"scripts": {
+		"test": "echo \"Error: no test specified\" && exit 1",
+		"build": "./node_modules/.bin/webpack"
+	},
+	"repository": {
+		"type": "git",
+		"url": "git+https://github.com/mszczegodzinski/text-editor.git"
+	},
+	"author": "Marek Szczegodziński",
+	"license": "ISC",
+	"bugs": {
+		"url": "https://github.com/mszczegodzinski/text-editor/issues"
+	},
+	"homepage": "https://github.com/mszczegodzinski/text-editor#readme",
+	"dependencies": {
+		"file-saver": "^2.0.5",
+		"webpack": "^5.37.0"
+	},
+	"devDependencies": {
+		"webpack-cli": "^4.7.0"
+	}
+}
