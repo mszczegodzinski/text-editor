@@ -14,7 +14,7 @@
 	</head>
 	<body>
 		<div class="wrapper">
-			<h2>Simple Text Editor</h2>
+			<h1 class="header">Simple Text Editor</h1>
 			<div class="toolbar">
 				<a href="javascript:void(0)" class="boldBtn">
 					<i class="fas fa-bold"></i>
@@ -28,9 +28,14 @@
 			</div>
 			<div class="textArea" contenteditable="true"></div>
 			<div class="bottomToolbar">
-				<button class="saveBtn">Read from file</button>
-				<button class="saveBtn">Save to file</button>
+				<button class="saveBtn">Save file</button>
+				<label htmlFor="fileInput" class="readBtn">
+					<input type="file" id="fileInput" class="fileInput" />
+					<span>Read file</span>
+				</label>
+				<span class="fileName">No file chosen</span>
 			</div>
+			<div class="notification"></div>
 		</div>
 		<footer class="footer">Created by Marek Szczegodziński 2021</footer>
 	</body>

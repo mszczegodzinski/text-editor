@@ -3,7 +3,7 @@ const saveButton = document.querySelector('.saveBtn');
 const boldButton = document.querySelector('.boldBtn');
 const italicButton = document.querySelector('.italicBtn');
 const bulletButton = document.querySelector('.bulletBtn');
-const buttons = document.querySelectorAll('a');
+const fileInput = document.querySelector('.fileInput');
 
 const format = (command, value) => {
 	document.execCommand(command, false, value);
@@ -24,8 +24,31 @@ const handleSaveFile = () => {
 	const obj = { data: '' };
 	obj.data = userInput;
 	const resultJson = JSON.stringify(obj);
-	// console.log(resultJson);
 	download(resultJson, 'data.json', 'application/json');
+};
+
+const handleUploadFile = (input) => {
+	const fileType = input.srcElement.files[0].type;
+	if (fileType !== 'application/json') {
+		return alert('Only json files are allowed. Try again with json file.');
+	}
+	const file = input.srcElement.files[0];
+	const fileName = input.srcElement.files[0].name;
+	const reader = new FileReader();
+
+	reader.readAsText(file);
+	reader.onload = function () {
+		const resultJson = JSON.parse(reader.result);
+		const userInput = document.querySelector('.textArea');
+		const fileNameLabel = document.querySelector('.fileName');
+		userInput.innerHTML = resultJson.data;
+		fileNameLabel.innerHTML = fileName;
+		alert('File upload succeeded');
+	};
+	reader.onerror = function () {
+		console.log(reader.error);
+		alert('File upload failed. Try again');
+	};
 };
 
 const handleBeforeUnload = (e) => {
@@ -44,6 +67,7 @@ saveButton.addEventListener('click', handleSaveFile);
 boldButton.addEventListener('click', () => handleClickButton(boldButton, 'bold'));
 italicButton.addEventListener('click', () => handleClickButton(italicButton, 'italic'));
 bulletButton.addEventListener('click', () => handleClickButton(bulletButton, 'insertunorderedlist'));
+fileInput.addEventListener('change', (e) => handleUploadFile(e));
 
 // show popup if user has had some changes:
 window.addEventListener('beforeunload', handleBeforeUnload);
