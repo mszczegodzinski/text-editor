@@ -1,7 +1,7 @@
 # Simple Text Editor
-This is the simple text editor app. Technology stack: HTML, CSS, JS.
+This is the Simple Text Editor app. Technology stack: HTML, CSS, JS.
 
-[Click here to run Stock App](https://mszczegodzinski.github.io/text-editor/)
+[Click here to run Simple Text Editor](https://mszczegodzinski.github.io/text-editor/)
 
 ## Functionality
 User can:
