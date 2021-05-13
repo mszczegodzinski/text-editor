@@ -4,6 +4,8 @@ const boldButton = document.querySelector('.boldBtn');
 const italicButton = document.querySelector('.italicBtn');
 const bulletButton = document.querySelector('.bulletBtn');
 const fileInput = document.querySelector('.fileInput');
+const notification = document.querySelector('.notification');
+let notificationTimeout = null;
 
 const format = (command, value) => {
 	document.execCommand(command, false, value);
@@ -21,6 +23,7 @@ const download = (content, fileName, contentType) => {
 
 const handleSaveFile = () => {
 	const userInput = document.querySelector('.textArea').innerHTML;
+	// create JSON and parse to string:
 	const obj = { data: '' };
 	obj.data = userInput;
 	const resultJson = JSON.stringify(obj);
@@ -38,21 +41,35 @@ const handleUploadFile = (input) => {
 
 	reader.readAsText(file);
 	reader.onload = function () {
-		const resultJson = JSON.parse(reader.result);
 		const userInput = document.querySelector('.textArea');
 		const fileNameLabel = document.querySelector('.fileName');
+		// parse txt content file to JSON:
+		const resultJson = JSON.parse(reader.result);
 		userInput.innerHTML = resultJson.data;
 		fileNameLabel.innerHTML = fileName;
-		alert('File upload succeeded');
+		// set content message and add animation:
+		notification.textContent = 'File upload succeeded';
+		notification.classList.add('showNotification');
+		notificationTimeout = setTimeout(() => {
+			notification.classList.remove('showNotification');
+		}, 6000);
 	};
 	reader.onerror = function () {
 		console.log(reader.error);
-		alert('File upload failed. Try again');
+		// set content message and add animation:
+		notification.style.backgroundColor = '#f00';
+		notification.textContent = 'File upload failed';
+		notification.classList.add('showNotification');
+		notificationTimeout = setTimeout(() => {
+			notification.classList.remove('showNotification');
+		}, 6000);
 	};
 };
 
 const handleBeforeUnload = (e) => {
+	clearTimeout(notificationTimeout);
 	const userInput = document.querySelector('.textArea').innerHTML;
+	// show popup if user has had some changes:
 	if (userInput) {
 		e.returnValue = '';
 	}
@@ -69,5 +86,5 @@ italicButton.addEventListener('click', () => handleClickButton(italicButton, 'it
 bulletButton.addEventListener('click', () => handleClickButton(bulletButton, 'insertunorderedlist'));
 fileInput.addEventListener('change', (e) => handleUploadFile(e));
 
-// show popup if user has had some changes:
+// show popup before leave website:
 window.addEventListener('beforeunload', handleBeforeUnload);

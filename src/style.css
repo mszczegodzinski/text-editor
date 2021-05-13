@@ -121,6 +121,19 @@ input[type='file'] {
 	animation: showElementAnimation 0.3s linear 0.3s forwards;
 }
 
+.notification {
+	padding: 10px 20px;
+	border-radius: 5px;
+	background-color: #0b0;
+	color: #fff;
+	font-size: 16px;
+	opacity: 0;
+}
+
+.showNotification {
+	animation: showNotification 6s linear 0s forwards;
+}
+
 @keyframes showElementAnimation {
 	0% {
 		transform: translateY(-20px);
@@ -129,6 +142,25 @@ input[type='file'] {
 	100% {
 		transform: translateY(0px);
 		opacity: 1;
+	}
+}
+
+@keyframes showNotification {
+	0% {
+		transform: translateY(-20px);
+		opacity: 0;
+	}
+	5% {
+		transform: translateY(0px);
+		opacity: 1;
+	}
+	95% {
+		transform: translateY(0px);
+		opacity: 1;
+	}
+	100% {
+		transform: translateY(-20px);
+		opacity: 0;
 	}
 }
 
