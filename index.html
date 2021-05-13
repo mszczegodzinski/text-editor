@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<title>Document</title>
+		<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" />
+		<link rel="preconnect" href="https://fonts.gstatic.com" />
+		<link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500&display=swap" rel="stylesheet" />
+		<link rel="stylesheet" href="./src/style.css" />
+		<script src="./src/main.js" defer></script>
+	</head>
+	<body>
+		<div class="wrapper">
+			<h1 class="header">Simple Text Editor</h1>
+			<div class="toolbar">
+				<a href="javascript:void(0)" class="boldBtn">
+					<i class="fas fa-bold"></i>
+				</a>
+				<a href="javascript:void(0)" class="italicBtn">
+					<i class="fas fa-italic"></i>
+				</a>
+				<a href="javascript:void(0)" class="bulletBtn">
+					<i class="fas fa-list"></i>
+				</a>
+			</div>
+			<div class="textArea" contenteditable="true"></div>
+			<div class="bottomToolbar">
+				<button class="saveBtn">Save file</button>
+				<label htmlFor="fileInput" class="readBtn">
+					<input type="file" id="fileInput" class="fileInput" />
+					<span>Read file</span>
+				</label>
+				<span class="fileName">No file chosen</span>
+			</div>
+			<div class="notificationWrapper">
+				<div class="notificationContent">
+					<div class="notification"></div>
+				</div>
+			</div>
+		</div>
+		<footer class="footer">Created by Marek Szczegodziński 2021</footer>
+	</body>
+</html>
