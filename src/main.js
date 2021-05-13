@@ -9,8 +9,8 @@ const notificationWrapper = document.querySelector('.notificationWrapper');
 let notificationTimeout = null;
 
 const format = (command, value) => {
-	document.execCommand(command, false, value);
 	textarea.focus();
+	document.execCommand(command, false, value);
 };
 
 // save data to file using browser api:
@@ -62,7 +62,6 @@ const handleUploadFile = (input) => {
 	if (fileType !== 'application/json') {
 		notification.style.backgroundColor = '#f00';
 		return renderNotification('type error');
-		// return alert('Only json files are allowed. Try again with json file.');
 	}
 	const file = input.target.files[0];
 	console.log(file);
