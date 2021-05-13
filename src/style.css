@@ -211,6 +211,9 @@ input[type='file'] {
 	.bottomToolbar {
 		width: 60%;
 	}
+	.textArea {
+		min-height: 200px;
+	}
 }
 
 @media screen and (min-width: 1250px) {
@@ -219,5 +222,8 @@ input[type='file'] {
 	}
 	.bottomToolbar {
 		width: 50%;
+	}
+	.textArea {
+		min-height: 300px;
 	}
 }
