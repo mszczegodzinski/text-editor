@@ -5,6 +5,7 @@ const italicButton = document.querySelector('.italicBtn');
 const bulletButton = document.querySelector('.bulletBtn');
 const fileInput = document.querySelector('.fileInput');
 const notification = document.querySelector('.notification');
+const notificationWrapper = document.querySelector('.notificationWrapper');
 let notificationTimeout = null;
 
 const format = (command, value) => {
@@ -30,17 +31,47 @@ const handleSaveFile = () => {
 	download(resultJson, 'data.json', 'application/json');
 };
 
-const handleUploadFile = (input) => {
-	const fileType = input.srcElement.files[0].type;
-	if (fileType !== 'application/json') {
-		return alert('Only json files are allowed. Try again with json file.');
+const renderNotification = (message) => {
+	notification.innerHTML = `File upload ${message} <i class="fas fa-times"></i>`;
+	notificationWrapper.style.display = 'block';
+	notificationWrapper.style.opacity = '1';
+	if (message === 'type error') {
+		notification.innerHTML = `Only json files are allowed. Try again with json file. <i class="fas fa-times"></i>`;
 	}
-	const file = input.srcElement.files[0];
-	const fileName = input.srcElement.files[0].name;
+	notification.classList.add('showNotification');
+	// reset input after timeout
+	notificationTimeout = setTimeout(() => {
+		notification.classList.remove('showNotification');
+		notificationWrapper.style.display = 'none';
+		fileInput.value = '';
+	}, 6000);
+	const closeBtn = document.querySelector('.fa-times');
+	// reset input aftet click close button:
+	closeBtn.addEventListener('click', () => {
+		notification.classList.remove('showNotification');
+		notificationWrapper.style.display = 'none';
+		clearTimeout(notificationTimeout);
+		fileInput.value = '';
+		console.log(fileInput);
+	});
+};
+
+const handleUploadFile = (input) => {
+	console.log(input);
+	const fileType = input.target.files[0].type;
+	if (fileType !== 'application/json') {
+		notification.style.backgroundColor = '#f00';
+		return renderNotification('type error');
+		// return alert('Only json files are allowed. Try again with json file.');
+	}
+	const file = input.target.files[0];
+	console.log(file);
+	const fileName = input.target.files[0].name;
 	const reader = new FileReader();
 
 	reader.readAsText(file);
 	reader.onload = function () {
+		console.log('upload');
 		const userInput = document.querySelector('.textArea');
 		const fileNameLabel = document.querySelector('.fileName');
 		// parse txt content file to JSON:
@@ -48,21 +79,14 @@ const handleUploadFile = (input) => {
 		userInput.innerHTML = resultJson.data;
 		fileNameLabel.innerHTML = fileName;
 		// set content message and add animation:
-		notification.textContent = 'File upload succeeded';
-		notification.classList.add('showNotification');
-		notificationTimeout = setTimeout(() => {
-			notification.classList.remove('showNotification');
-		}, 6000);
+		notification.style.backgroundColor = '#0b0';
+		renderNotification('succeeded');
 	};
 	reader.onerror = function () {
 		console.log(reader.error);
 		// set content message and add animation:
 		notification.style.backgroundColor = '#f00';
-		notification.textContent = 'File upload failed';
-		notification.classList.add('showNotification');
-		notificationTimeout = setTimeout(() => {
-			notification.classList.remove('showNotification');
-		}, 6000);
+		renderNotification('failed');
 	};
 };
 
