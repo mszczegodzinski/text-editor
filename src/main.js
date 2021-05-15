@@ -91,11 +91,8 @@ const handleUploadFile = (input) => {
 
 const handleBeforeUnload = (e) => {
 	clearTimeout(notificationTimeout);
-	const userInput = document.querySelector('.textArea').innerHTML;
 	// show popup if user has had some changes:
-	if (userInput) {
-		e.returnValue = '';
-	}
+	e.returnValue = '';
 };
 
 const handleClickButton = (clickedElement, typeAction) => {
