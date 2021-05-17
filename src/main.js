@@ -52,25 +52,21 @@ const renderNotification = (message) => {
 		notificationWrapper.style.display = 'none';
 		clearTimeout(notificationTimeout);
 		fileInput.value = '';
-		console.log(fileInput);
 	});
 };
 
 const handleUploadFile = (input) => {
-	console.log(input);
 	const fileType = input.target.files[0].type;
 	if (fileType !== 'application/json') {
 		notification.style.backgroundColor = '#f00';
 		return renderNotification('type error');
 	}
 	const file = input.target.files[0];
-	console.log(file);
 	const fileName = input.target.files[0].name;
 	const reader = new FileReader();
 
 	reader.readAsText(file);
 	reader.onload = function () {
-		console.log('upload');
 		const userInput = document.querySelector('.textArea');
 		const fileNameLabel = document.querySelector('.fileName');
 		// parse txt content file to JSON:
