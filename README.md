@@ -1,4 +1,5 @@
 # Simple Text Editor
+Recruitment task for ArdentCode internship.
 This is the Simple Text Editor app. Technology stack: HTML, CSS, JS.
 
 [Click here to run Simple Text Editor](https://mszczegodzinski.github.io/text-editor/)
